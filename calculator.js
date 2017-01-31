@@ -52,17 +52,8 @@ function setValues() {
 
 function multiply () {
 
-	console.log('multiply wants to run');
-
 	setValues();
-
-	console.log('a:', a);
-	console.log('b:', b);
-
 	let product = a * b;
-
-	console.log('product:', product);
-
 	printResult(product);	
 }
 
@@ -74,17 +65,8 @@ function multiply () {
 
 function add () {
 
-	console.log('add wants to run');
-
 	setValues();
-
-	console.log('a:', a);
-	console.log('b:', b);
-
 	let sum =  a + b;
-
-	console.log('sum:', sum);
-
 	printResult(sum);
 }
 
@@ -95,18 +77,8 @@ function add () {
  */
 
 function subtract () {
-
-	console.log('subtract wants to run');
-
 	setValues();
-
-	console.log('a:', a);
-	console.log('b:', b);
-
 	let difference =  a - b;
-
-	console.log('difference:', difference);
-
 	printResult(difference);
 }
 
@@ -116,18 +88,8 @@ function subtract () {
  */
 
 function divide () {
-	
-	console.log('divide wants to run');
-
 	setValues();
-
-	console.log('a:', a);
-	console.log('b:', b);
-
 	let quotient =  a / b;
-
-	console.log('quotient:', quotient);
-
 	printResult(quotient);
 }
 
@@ -140,19 +102,24 @@ function divide () {
 
   Return the value of the operation.
  */
+ //let product = doMath(2, 3, multiply);
 
-/*function doMath(num1, num2, function) {
-	return function(num1, num2);
-}
+ function doMath(a, b, operation){
 
-doMath(2, 4, multiply);*/
+     let result = operation(a, b);
+     return result;
+ }
 
-
-
-
-
+ // Calling the function to add 2 and 3
 
 
+
+
+
+
+	//console.log('a:', a);
+	// console.log('b:', b);
+	// console.log('result:', result);
 
 
 
