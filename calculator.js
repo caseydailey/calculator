@@ -1,7 +1,6 @@
-console.log('files are linked');
+"use strict";
 
-//grab elements form the DOM
-
+//grab elements
 const firstInput = document.getElementById("input-1");
 const secondInput = document.getElementById("input-2");
 const addButton = document.getElementById("add");
@@ -11,115 +10,92 @@ const divideButton = document.getElementById("divide");
 const results = document.getElementById("results");
 const resetButton = document.getElementById("reset");
 
-let a = "";
-let b = ""; 
-
-//put an event listener on each of the buttons
-
-addButton.addEventListener("click", add);
-subtractButton.addEventListener("click", subtract);
-multiplyButton.addEventListener("click", multiply);
-divideButton.addEventListener("click", divide);
-resetButton.addEventListener("click", reset);
+//add listeners to buttons
+addButton.addEventListener("click", run);
+subtractButton.addEventListener("click", run);
+multiplyButton.addEventListener("click", run);
+divideButton.addEventListener("click", run);
+resetButton.addEventListener("click", clear);
 
 
 //When the user performs one of the operations, 
 //output the result to another DOM element of your choice.
+function printResult(result){
 
-function printResult (result) {
+    results.innerHTML = `<h2> the result is: </h2>
+                         <p> ${result} </p>`;
 
-	resultString = `<h2> the result is: </h2>
-			  <p> ${result} </p>`;
-
-	results.innerHTML = resultString;
 }
 
-function reset() {
-	window.location.reload(true);
+//helper to clear inputs and display
+function clear(){
+    window.location.reload(true);
 }
 
-function setValues() {
-
-	a = parseInt(firstInput.value);
-	b = parseInt(secondInput.value);
+function getA(){
+    return parseInt(firstInput.value)
 }
 
-/*
-  Create a function that multiplies two numbers
-  passed in as arguments. Return the product.
- */
+function getB(){
+    return parseInt(secondInput.value)
+}
 
+function getOp(e){
+    return e.currentTarget.id; 
+}
 
-function multiply () {
-
-	setValues();
-	let product = a * b;
-	printResult(product);	
+let multiply = function(a,b){
+    return a * b;
 }
 
 
-/*
-  Create a function that adds two numbers
-  passed in as arguments. Return the sum.
- */
-
-function add () {
-
-	setValues();
-	let sum =  a + b;
-	printResult(sum);
-}
-
-
-/*
-  Create a function that subtracts two numbers
-  passed in as arguments. Return the difference.
- */
-
-function subtract () {
-	setValues();
-	let difference =  a - b;
-	printResult(difference);
-}
-
-/*
-  Create a function that divides two numbers
-  passed in as arguments. Return the quotient.
- */
-
-function divide () {
-	setValues();
-	let quotient =  a / b;
-	printResult(quotient);
-}
-
-
-/*
-  Create a function that accepts three arguments.
-    1. First number
-    2. Second number
-    3. A function that performs an operation on them
-
-  Return the value of the operation.
- */
- //let product = doMath(2, 3, multiply);
-
- function doMath(a, b, operation){
-
-     let result = operation(a, b);
-     return result;
+ let add = function(a, b){
+    return a + b;
  }
 
- // Calling the function to add 2 and 3
+
+
+let subtract = function(a, b){
+    return a - b;
+}
 
 
 
 
+let divide = function(a, b){
+    return a / b;
+}
 
 
-	//console.log('a:', a);
-	// console.log('b:', b);
-	// console.log('result:', result);
+
+function math(a, b, op){
+    return op(a,b);
+}
+
+function caller(a,b,op){
+
+    switch(op){
+        case "add": 
+            return math(a, b, add);
+        case "subtract": 
+            return math(a, b, subtract);
+        case "multiply": 
+            return math(a, b, multiply);
+        case "divide": 
+            return math(a, b, divide);
+        }
+}
+
+function run(e){
+
+    let a = getA();
+    let b = getB();
+    let op = getOp(e);
+    let answer = caller(a,b,op);
+    printResult(answer);
+
+}
+
 
 
 
